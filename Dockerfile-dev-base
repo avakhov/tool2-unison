@@ -5,7 +5,7 @@ RUN apt-get update && \
   build-essential libssl-dev zlib1g-dev \
   libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev \
   libncursesw5-dev tk-dev libffi-dev liblzma-dev \
-  libpq-dev tzdata
+  libpq-dev tzdata libyaml-dev
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
@@ -15,7 +15,7 @@ ENV RBENV_HASH "311217208122e4c7e49c2bff9069912e2a07e873"
 ENV RUBY_BUILD_HASH "895f8fa40f117afdc6b441de3557ba58193803e9"
 ENV NODENV_HASH "15375bb6d6b5215a47c56cdd8bf347d4f360bf34"
 ENV NODE_BUILD_HASH "0b1e2d31d96b4b5cbc385494b24c03382a714ea2"
-ENV GOENV_HASH "6015352fb604850af7dd5726b9201b93276d7adc"
+ENV GOENV_HASH "83b7123f1ccef6401bcf1214bd44f050a6832241"
 ENV PYENV_HASH "e82e12739c5fdaa0ccd554d648a092dc12402a5f"
 
 ENV PATH="/root/.rbenv/bin:/root/.rbenv/shims:$PATH"
