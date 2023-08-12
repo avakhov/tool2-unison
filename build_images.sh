@@ -1,7 +1,14 @@
 #!/bin/bash
 
 # export DOCKER_BUILDX='docker buildx build --platform linux/amd64,linux/arm64 --push'
-export ARCH=$(uname -m)
+if [ $(uname -m) == "x86_64" ]; then
+  export ARCH="amd64"
+elif [ $(uname -m) == "arm64" ]; then
+  export ARCH="arm64"
+else
+  echo "unknown architecture: $(uname -m)"
+  exit 1
+fi
 export DOCKER_BUILDX="docker buildx build --platform linux/$ARCH --push"
 
 export UNISON_VERSION="v3"
