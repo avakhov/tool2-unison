@@ -2,12 +2,12 @@
 
 if [ "$1" == "all" ]; then
 export DOCKER_BUILDX='docker buildx build --platform linux/amd64,linux/arm64 --push'
-elif [ "$1" == "amd" ]; then
+elif [ "$1" == "intel" ]; then
 export DOCKER_BUILDX='docker buildx build --platform linux/amd64 --push'
 elif [ "$1" == "m" ]; then
 export DOCKER_BUILDX='docker buildx build --platform linux/arm64 --push'
 else
-echo "expect arg: all,amd,m"
+echo "expect arg: all,intel,m"
 exit -1
 fi
 
