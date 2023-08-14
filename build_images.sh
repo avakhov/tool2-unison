@@ -8,8 +8,6 @@ else
   echo "unknown architecture: $(uname -m)"
   exit 1
 fi
-export DOCKER_BUILD="docker build"
-
 export UNISON_VERSION="v3"
 export DEV_BASE_VERSION="v4"
 export RUBY_BUILD_VERSION_251="v3"
@@ -22,7 +20,6 @@ export RUBY_BUILD_VERSION_322="v3"
 set -ex
 cat Dockerfile-unison | docker build -t tool2/unison:$UNISON_VERSION-$ARCH -; docker push tool2/unison:$UNISON_VERSION-$ARCH
 cat Dockerfile-dev-base | docker build -t tool2/dev-base:$DEV_BASE_VERSION-$ARCH -; docker push tool2/dev-base:$DEV_BASE_VERSION-$ARCH
-
 (cat Dockerfile-dev-base; cat dev-ruby) | docker build --build-arg='RUBY_VERSION=2.5.1' -t tool2/dev-ruby:2.5.1-$RUBY_BUILD_VERSION_251-$ARCH -; docker push tool2/dev-ruby:2.5.1-$RUBY_BUILD_VERSION_251-$ARCH
 (cat Dockerfile-dev-base; cat dev-ruby) | docker build --build-arg='RUBY_VERSION=2.6.6' -t tool2/dev-ruby:2.6.6-$RUBY_BUILD_VERSION_266-$ARCH -; docker push tool2/dev-ruby:2.6.6-$RUBY_BUILD_VERSION_266-$ARCH
 (cat Dockerfile-dev-base; cat dev-ruby) | docker build --build-arg='RUBY_VERSION=2.7.4' -t tool2/dev-ruby:2.7.4-$RUBY_BUILD_VERSION_274-$ARCH -; docker push tool2/dev-ruby:2.7.4-$RUBY_BUILD_VERSION_274-$ARCH
