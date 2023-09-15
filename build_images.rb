@@ -16,6 +16,7 @@ UNISON_VERSION = "v3"
 DEV_BASE_VERSION = "v4"
 RUBY_BUILD_VERSION_251 = "v3"
 RUBY_BUILD_VERSION_266 = "v3"
+RUBY_BUILD_VERSION_2610 = "v1"
 RUBY_BUILD_VERSION_273 = "v1"
 RUBY_BUILD_VERSION_274 = "v3"
 RUBY_BUILD_VERSION_275 = "v3"
@@ -43,6 +44,7 @@ docker_build("tool2/unison", "#{UNISON_VERSION}-#{ARCH}", "cat Dockerfile-unison
 docker_build("tool2/dev-base", "#{DEV_BASE_VERSION}-#{ARCH}", "cat Dockerfile-dev-base", nil)
 docker_build("tool2/dev-ruby", "2.5.1-#{RUBY_BUILD_VERSION_251}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.5.1")
 docker_build("tool2/dev-ruby", "2.6.6-#{RUBY_BUILD_VERSION_266}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.6")
+docker_build("tool2/dev-ruby", "2.6.10-#{RUBY_BUILD_VERSION_2610}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.10")
 docker_build("tool2/dev-ruby", "2.7.3-#{RUBY_BUILD_VERSION_273}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.7.3")
 docker_build("tool2/dev-ruby", "2.7.4-#{RUBY_BUILD_VERSION_274}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.7.4")
 docker_build("tool2/dev-ruby", "2.7.5-#{RUBY_BUILD_VERSION_275}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.7.5")
