@@ -14,7 +14,6 @@ end
 
 UNISON_VERSION = "v3"
 DEV_BASE_VERSION = "v6"
-RUBY_BUILD_VERSION_193 = "v1"
 RUBY_BUILD_VERSION_251 = "v3"
 RUBY_BUILD_VERSION_266 = "v3"
 RUBY_BUILD_VERSION_2610 = "v1"
@@ -43,7 +42,6 @@ end
 
 docker_build("avakhov/unison", "#{UNISON_VERSION}-#{ARCH}", "cat Dockerfile-unison", nil)
 docker_build("avakhov/dev-base", "#{DEV_BASE_VERSION}-#{ARCH}", "cat Dockerfile-dev-base", nil)
-docker_build("avakhov/dev-ruby", "1.9.3-#{RUBY_BUILD_VERSION_193}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=1.9.3-p551")
 docker_build("avakhov/dev-ruby", "2.5.1-#{RUBY_BUILD_VERSION_251}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.5.1")
 docker_build("avakhov/dev-ruby", "2.6.6-#{RUBY_BUILD_VERSION_266}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.6")
 docker_build("avakhov/dev-ruby", "2.6.10-#{RUBY_BUILD_VERSION_2610}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.10")
