@@ -23,6 +23,7 @@ RUBY_BUILD_VERSION_275 = "v3"
 RUBY_BUILD_VERSION_302 = "v3"
 RUBY_BUILD_VERSION_311 = "v1"
 RUBY_BUILD_VERSION_322 = "v3"
+ELASTIC_VERSION_243 = "v1"
 
 def is_docker_image_exists?(image, tag)
   hr = JSON.load(`curl -s https://hub.docker.com/v2/repositories/#{image}/tags/#{tag}`)
@@ -34,21 +35,31 @@ def docker_build(image, tag, script, build_arg)
     puts "docker image #{image}:#{tag} already exists"
   else
     puts "start #{image}:#{tag} build:"
-    system("#{script} | #{BUILD} #{build_arg ? "--build-arg=#{build_arg}" : ""} -t #{image}:#{tag} -; docker push #{image}:#{tag}")
+    system("#{script} | #{BUILD} #{build_arg ? "--build-arg=#{build_arg}" : ""} -t #{image}:#{tag} - && docker push #{image}:#{tag}")
     raise "script failed" unless $?.success?
   end
 end
 
+def elastic_build(image, tag, folder)
+  if is_docker_image_exists?(image, tag)
+    puts "docker image #{image}:#{tag} already exists"
+  else
+    puts "start #{image}:#{tag} build:"
+    system("cd #{folder} && #{BUILD} -t #{image}:#{tag} . && docker push #{image}:#{tag}")
+    raise "script failed" unless $?.success?
+  end
+end
 
-docker_build("avakhov/unison", "#{UNISON_VERSION}-#{ARCH}", "cat Dockerfile-unison", nil)
-docker_build("avakhov/dev-base", "#{DEV_BASE_VERSION}-#{ARCH}", "cat Dockerfile-dev-base", nil)
-docker_build("avakhov/dev-ruby", "2.5.1-#{RUBY_BUILD_VERSION_251}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.5.1")
-docker_build("avakhov/dev-ruby", "2.6.6-#{RUBY_BUILD_VERSION_266}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.6")
-docker_build("avakhov/dev-ruby", "2.6.10-#{RUBY_BUILD_VERSION_2610}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.10")
-docker_build("avakhov/dev-ruby", "2.7.3-#{RUBY_BUILD_VERSION_273}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.7.3")
-docker_build("avakhov/dev-ruby", "2.7.4-#{RUBY_BUILD_VERSION_274}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.7.4")
-docker_build("avakhov/dev-ruby", "2.7.5-#{RUBY_BUILD_VERSION_275}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.7.5")
-docker_build("avakhov/dev-ruby", "3.0.2-#{RUBY_BUILD_VERSION_302}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=3.0.2")
-docker_build("avakhov/dev-ruby", "3.1.1-#{RUBY_BUILD_VERSION_311}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=3.1.1")
-docker_build("avakhov/dev-ruby", "3.2.2-#{RUBY_BUILD_VERSION_322}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=3.2.2")
+# docker_build("avakhov/unison", "#{UNISON_VERSION}-#{ARCH}", "cat Dockerfile-unison", nil)
+# docker_build("avakhov/dev-base", "#{DEV_BASE_VERSION}-#{ARCH}", "cat Dockerfile-dev-base", nil)
+# docker_build("avakhov/dev-ruby", "2.5.1-#{RUBY_BUILD_VERSION_251}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.5.1")
+# docker_build("avakhov/dev-ruby", "2.6.6-#{RUBY_BUILD_VERSION_266}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.6")
+# docker_build("avakhov/dev-ruby", "2.6.10-#{RUBY_BUILD_VERSION_2610}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.10")
+# docker_build("avakhov/dev-ruby", "2.7.3-#{RUBY_BUILD_VERSION_273}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.7.3")
+# docker_build("avakhov/dev-ruby", "2.7.4-#{RUBY_BUILD_VERSION_274}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.7.4")
+# docker_build("avakhov/dev-ruby", "2.7.5-#{RUBY_BUILD_VERSION_275}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.7.5")
+# docker_build("avakhov/dev-ruby", "3.0.2-#{RUBY_BUILD_VERSION_302}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=3.0.2")
+# docker_build("avakhov/dev-ruby", "3.1.1-#{RUBY_BUILD_VERSION_311}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=3.1.1")
+# docker_build("avakhov/dev-ruby", "3.2.2-#{RUBY_BUILD_VERSION_322}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=3.2.2")
+elastic_build("avakhov/elasticsearch", "2.4.3-#{ELASTIC_VERSION_243}-#{ARCH}", "elastic_243")
 puts "done :)"
