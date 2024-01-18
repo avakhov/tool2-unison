@@ -6,7 +6,7 @@ ENV ES_VERSION 2.4.3
 
 # Download and install Elasticsearch
 RUN apt-get update && \
-    apt-get install -y wget libffi-dev&& \
+    apt-get install -y wget \
     wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${ES_VERSION}/elasticsearch-${ES_VERSION}.tar.gz && \
     tar -xzvf elasticsearch-${ES_VERSION}.tar.gz && \
     mv elasticsearch-${ES_VERSION} /elasticsearch && \
