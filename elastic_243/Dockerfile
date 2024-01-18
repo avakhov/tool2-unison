@@ -16,6 +16,6 @@ RUN apt-get update && \
 EXPOSE 9200 9300
 
 # Set the default command to run Elasticsearch
-CMD ["/elasticsearch/bin/elasticsearch"]
+CMD ["/elasticsearch/bin/elasticsearch", "--network.host=0.0.0.0"]
 
 

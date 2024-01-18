@@ -23,7 +23,7 @@ RUBY_BUILD_VERSION_275 = "v3"
 RUBY_BUILD_VERSION_302 = "v3"
 RUBY_BUILD_VERSION_311 = "v1"
 RUBY_BUILD_VERSION_322 = "v3"
-ELASTIC_VERSION_243 = "v3"
+ELASTIC_VERSION_243 = "v4"
 
 def is_docker_image_exists?(image, tag)
   puts("cmd: curl -s https://hub.docker.com/v2/repositories/#{image}/tags/#{tag}")
