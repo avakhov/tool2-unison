@@ -1,5 +1,5 @@
 # Use an ARM64 base image
-FROM arm64v8/openjdk:8-jre
+FROM openjdk:8-jre
 
 # Set Elasticsearch version
 ENV ES_VERSION 2.4.3
