@@ -53,6 +53,7 @@ end
 
 docker_build("avakhov/unison", "#{UNISON_VERSION}-#{ARCH}", "cat Dockerfile-unison", nil)
 docker_build("avakhov/dev-base", "#{DEV_BASE_VERSION}-#{ARCH}", "cat Dockerfile-dev-base", nil)
+
 docker_build("avakhov/dev-ruby", "2.5.1-#{RUBY_BUILD_VERSION_251}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.5.1")
 docker_build("avakhov/dev-ruby", "2.6.6-#{RUBY_BUILD_VERSION_266}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.6")
 docker_build("avakhov/dev-ruby", "2.6.10-#{RUBY_BUILD_VERSION_2610}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=2.6.10")
@@ -62,5 +63,7 @@ docker_build("avakhov/dev-ruby", "2.7.5-#{RUBY_BUILD_VERSION_275}-#{ARCH}", "(ca
 docker_build("avakhov/dev-ruby", "3.0.2-#{RUBY_BUILD_VERSION_302}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=3.0.2")
 docker_build("avakhov/dev-ruby", "3.1.1-#{RUBY_BUILD_VERSION_311}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=3.1.1")
 docker_build("avakhov/dev-ruby", "3.2.2-#{RUBY_BUILD_VERSION_322}-#{ARCH}", "(cat Dockerfile-dev-base; cat dev-ruby)", "RUBY_VERSION=3.2.2")
+
 elastic_build("avakhov/elasticsearch", "2.4.3-#{ELASTIC_VERSION_243}-#{ARCH}", "elastic_243")
+
 puts "done :)"

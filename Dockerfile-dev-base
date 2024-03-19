@@ -5,7 +5,7 @@ RUN apt-get update && \
   build-essential libssl-dev zlib1g-dev \
   libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev \
   libncursesw5-dev tk-dev libffi-dev liblzma-dev \
-  libpq-dev tzdata libyaml-dev
+  libpq-dev tzdata libyaml-dev inetutils-ping
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
