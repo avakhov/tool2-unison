@@ -23,6 +23,7 @@ RUBY_275  = "v4"
 RUBY_302  = "v4"
 RUBY_311  = "v2"
 RUBY_322  = "v4"
+RUBY_335  = "v1"
 
 def is_docker_image_exists?(image, tag)
   puts("cmd: curl -s https://hub.docker.com/v2/repositories/#{image}/tags/#{tag}")
@@ -51,5 +52,6 @@ docker_build("avakhov/dev-ruby", "2.7.5-#{RUBY_275}-#{ARCH}", ["dev_base", "ruby
 docker_build("avakhov/dev-ruby", "3.0.2-#{RUBY_302}-#{ARCH}", ["dev_base", "ruby302"])
 docker_build("avakhov/dev-ruby", "3.1.1-#{RUBY_311}-#{ARCH}", ["dev_base", "ruby311"])
 docker_build("avakhov/dev-ruby", "3.2.2-#{RUBY_322}-#{ARCH}", ["dev_base", "ruby322"])
+docker_build("avakhov/dev-ruby", "3.3.5-#{RUBY_335}-#{ARCH}", ["dev_base", "ruby335"])
 
 puts "done :)"

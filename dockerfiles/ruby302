@@ -1,5 +1,6 @@
 ENV RBENV_HASH "311217208122e4c7e49c2bff9069912e2a07e873"
 ENV RUBY_BUILD_HASH "895f8fa40f117afdc6b441de3557ba58193803e9"
+
 ENV PATH="/root/.rbenv/bin:/root/.rbenv/shims:$PATH"
 RUN git clone https://github.com/rbenv/rbenv.git /root/.rbenv && \
   cd /root/.rbenv && git checkout $RBENV_HASH && cd /root && \
