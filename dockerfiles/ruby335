@@ -9,5 +9,5 @@ RUN git clone https://github.com/rbenv/rbenv.git /root/.rbenv && \
 ENV RUBY_CONFIGURE_OPTS=--disable-install-doc
 ENV BUNDLE_PATH=.gems
 
-ENV RBENV_VERSION 3.2.2
+ENV RBENV_VERSION 3.3.5
 RUN rbenv install ${RBENV_VERSION}
