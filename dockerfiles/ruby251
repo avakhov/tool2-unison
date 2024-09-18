@@ -1,0 +1,12 @@
+ENV RBENV_HASH "311217208122e4c7e49c2bff9069912e2a07e873"
+ENV RUBY_BUILD_HASH "895f8fa40f117afdc6b441de3557ba58193803e9"
+ENV PATH="/root/.rbenv/bin:/root/.rbenv/shims:$PATH"
+RUN git clone https://github.com/rbenv/rbenv.git /root/.rbenv && \
+  cd /root/.rbenv && git checkout $RBENV_HASH && cd /root && \
+  git clone https://github.com/rbenv/ruby-build.git /root/.rbenv/plugins/ruby-build && \
+  cd /root/.rbenv/plugins/ruby-build && git checkout $RUBY_BUILD_HASH
+ENV RUBY_CONFIGURE_OPTS=--disable-install-doc
+ENV BUNDLE_PATH=.gems
+
+ENV RBENV_VERSION 2.5.1
+RUN rbenv install ${RBENV_VERSION}
